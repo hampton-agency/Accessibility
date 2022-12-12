@@ -1,0 +1,44 @@
+{
+    "name": "hampton/accessibility",
+    "description": "Check your entries for common accessibility issues",
+    "type": "craft-plugin",
+    "version": "1.0.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "accessibility"
+    ],
+    "support": {
+        "docs": "???",
+        "issues": "???"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hampton",
+            "homepage": "www.hampton.agency"
+        }
+    ],
+    "require": {
+        "pelago/emogrifier": "^7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "hampton\\accessibility\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Accessibility",
+        "handle": "accessibility",
+        "developer": "Hampton",
+        "developerUrl": "www.hampton.agency",
+        "documentationUrl": "???",
+        "changelogUrl": "???",
+        "components": {
+            "accessibilityService": "hampton\\accessibility\\services\\AccessibilityService"
+        },
+        "class": "hampton\\accessibility\\Accessibility"
+    }
+}

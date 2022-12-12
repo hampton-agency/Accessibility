@@ -1,0 +1,41 @@
+{% import "_includes/forms" as forms %}
+
+{% set sections = craft.app.sections.allSections %}
+{% set values = settings.filterSections %}
+{% set options = [] %}
+
+{% do view.registerAssetBundle("hampton\\accessibility\\assetbundles\\accessibility\\AccessibilityAsset") %}
+
+{{ forms.lightswitch({
+    label: 'Debug Mode',
+    instructions: 'Turn debug mode on and off',
+    id: 'debugMode',
+    name: 'debugMode',
+    value: settings.debugMode,
+    on: settings.debugMode
+    })
+}}
+
+{{ forms.textField({
+    label: 'Debug Email',
+    instructions: 'Where debug emails go (comma separate if needed as standard)',
+    id: 'debugEmail',
+    name: 'debugEmail',
+    value: settings.debugEmail
+    })
+}}
+
+{% for section in sections %}
+    {% set options = options|merge([{label:section.handle,value:section.id}]) %}
+{% endfor %}
+
+<div class="instructions">
+    <p>Select which sections to check</p>
+    {{ forms.checkboxgroup({
+        label: 'Sections',
+        id: 'filterSections',
+        name: 'filterSections',
+        options: options,
+        values: values })
+    }}
+</div>
