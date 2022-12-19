@@ -1,0 +1,84 @@
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+
+{% do view.registerAssetBundle("hampton\\accessibility\\assetbundles\\accessibility\\AccessibilityAsset") %}
+{% do view.registerAssetBundle("hampton\\accessibility\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{% set docsUrl = "???" %}
+{% set title = "Accessibility" %}
+{% set pluginCpUrl = url('accessibility') %}
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@hampton/accessibility/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}
+
+{% set issues = craft.accessibility.getAccessibilityIssues() %}
+
+{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <a href="{{ pluginCpUrl }}/api/run-task" class="btn submit add icon">{{ "Run Scan"|t('accessibility') }}</a>
+    </div>
+{% endset %}
+
+{% set content %}
+
+    {{ extraPageHeaderHtml }}
+
+    {# Get the SVG Sprite #}
+    {{ svg('@hampton/accessibility/assetbundles/accessibility/dist/img/sprite.svg') }}
+
+    {% if issues is defined and issues is not empty %}
+
+        <div class="flex-between">
+            <h2>{{ "Issues Found"|t('accessibility') }}</h2>
+            <p><i>Last scan: {{ (issues[0] is defined and issues[0] is not empty) ? issues[0].dateCreated|date('jS F Y') : '' }}</i></p>
+        </div>
+
+         <table class="data fullwidth results">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Issue</th>
+                    <th>Description</th>
+                    <th>Entry</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue in issues %}
+                {% set issueDetails = issue.issue|json_decode %}
+                {% set entry = craft.entries().section('pages').id(issue.entryId).one() %}
+                {% if entry is defined and entry is not empty %}
+                    {% for pageIssue in issueDetails %}
+                        <tr>
+                            <td>
+                                {% if pageIssue.Severity == 3 %}
+                                    <svg height="16px" width="16px" style="color:red">
+                                        <use xlink:href="#alert-circle" />
+                                    </svg>
+                                {% elseif pageIssue.Severity == 2 %}
+                                    <svg height="16px" width="16px" style="color:orange">
+                                        <use xlink:href="#alert-triangle" />
+                                    </svg>
+                                {% elseif pageIssue.Severity == 1 %}
+                                    <svg height="16px" width="16px" style="color:green">
+                                        <use xlink:href="#check" />
+                                    </svg>
+                                {% endif %}
+                            </td>
+                            <td><strong>{{ pageIssue.Type }}</strong></td>
+                            <td>{{ pageIssue.Name }}</td>
+                            <td>
+                              <a href="{{ entry.cpEditUrl }}" target="_blank">
+                                  {{ entry.title }}
+                                  <svg height="16px" width="16px" style="display:inline">
+                                      <use xlink:href="#external-link" />
+                                  </svg>
+                              </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                {% endfor %}
+            </tbody>
+         </table>
+    {% endif %}
+
+{% endset %}
