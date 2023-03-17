@@ -268,17 +268,11 @@ class AccessibilityService extends Component {
 
 
     public function checkEntry($entry_id) {
-
         $query = (new craft\elements\db\ElementQuery($entry_id));
 
         $export = craft\elements\db\ElementQueryInterface($query);
 
         $results = $export->export();
-
-        $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-        if($entry_id < 100) mail('steven@hampton.agency', "Accessibility plugin checking".$entry_id, print_r($results,true), $headers);
-
     }
 
     public function getWhitelist() {
