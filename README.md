@@ -24,7 +24,7 @@ To install the plugin, follow these instructions.
 
 ## Accessibility Overview
 
-This plugin allows your server to be overwhelmed by terrible code.
+Scan your site for accessibility issues in the Craft CMS dashboard.
 
 ## Configuring Accessibility
 
