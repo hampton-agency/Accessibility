@@ -18,10 +18,19 @@
 
 {{ forms.textField({
     label: 'Debug Email',
-    instructions: 'Where debug emails go (comma separate if needed as standard)',
+    instructions: 'Where debug emails go (comma separate for multiple emails)',
     id: 'debugEmail',
     name: 'debugEmail',
     value: settings.debugEmail
+    })
+}}
+
+{{ forms.textAreaField({
+    label: 'Whitelist',
+    instructions: 'Any words to remove from the audit, this could be a company name that contains an ampersand (comma seperate for multiple).',
+    id: 'whiteList',
+    name: 'whiteList',
+    value: settings.whiteList
     })
 }}
 

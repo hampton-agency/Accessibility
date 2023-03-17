@@ -8,6 +8,9 @@ use hampton\accessibility\jobs\AccessibilityTask;
 use Craft;
 use craft\web\Controller;
 use craft\helpers\UrlHelper;
+use craft\elements\Entry;
+
+use craft\db\Query;
 
 class DefaultController extends Controller {
 
@@ -22,6 +25,10 @@ class DefaultController extends Controller {
     }
 
     public function actionTest() {
-        return accessibility::getInstance()->services->setAccessibilityIssues();
+        $entry = Entry::find()
+            ->id(2)
+            ->one();
+
+        return json_encode($entry);
     }
 }
