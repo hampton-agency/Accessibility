@@ -1,8 +1,8 @@
-# Accessibility plugin for Craft CMS 3.x
+# Accessibility plugin for Craft CMS 4.x
 
 Check your entries for common accessibility issues
 
-![Screenshot](resources/img/plugin-logo.png)
+![Screenshot](resources/img/hampton-plugin-logo.png)
 
 ## Requirements
 
