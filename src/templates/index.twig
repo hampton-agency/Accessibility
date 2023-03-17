@@ -29,7 +29,7 @@
 
         <div class="flex-between">
             <h2>{{ "Issues Found"|t('accessibility') }}</h2>
-            <p><i>Last scan: {{ (issues[0] is defined and issues[0] is not empty) ? issues[0].dateCreated|date('jS F Y') : '' }}</i></p>
+            <p><i>Last scan: {{ (issues[0] is defined and issues[0] is not empty) ? issues[0].dateCreated|date('jS F Y H:i:s') : '' }}</i></p>
         </div>
 
          <table class="data fullwidth results">
@@ -37,8 +37,8 @@
                 <tr>
                     <th></th>
                     <th>Issue</th>
-                    <th>Description</th>
                     <th>Entry</th>
+                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,7 +64,6 @@
                                 {% endif %}
                             </td>
                             <td><strong>{{ pageIssue.Type }}</strong></td>
-                            <td>{{ pageIssue.Name }}</td>
                             <td>
                               <a href="{{ entry.cpEditUrl }}" target="_blank">
                                   {{ entry.title }}
@@ -73,6 +72,7 @@
                                   </svg>
                               </a>
                             </td>
+                            <td>{{ pageIssue.Name }}</td>
                         </tr>
                     {% endfor %}
                 {% endif %}

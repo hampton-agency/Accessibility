@@ -12,12 +12,12 @@ use Craft;
  * @since     1.0.0
  */
 class AccessibilityVariable {
-  
+
     public function getAccessibilityIssues() {
         return accessibility::getInstance()->services->getAccessibilityIssues();
     }
 
-    public function setAccessibilityIssues() {
-        return accessibility::getInstance()->services->setAccessibilityIssues();
+    public function setAccessibilityIssues($scanId,$entry) {
+        return accessibility::getInstance()->services->setAccessibilityIssues($scanId,$entry);
     }
 }

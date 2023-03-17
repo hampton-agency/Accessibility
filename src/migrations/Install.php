@@ -14,8 +14,9 @@ class Install extends Migration {
         if (!$this->db->tableExists($table)) {
             $this->createTable($table, [
                 'id' => $this->primaryKey(),
-                'scanId' => $this->integer()->notNull(),
+                'scanId' => $this->bigInteger()->defaultValue(20),
                 'entryId' => $this->integer()->notNull(),
+                'severity' => $this->integer()->notNull(),
                 'issue' => $this->text(),
                 'dateCreated' => $this->dateTime()->notNull(),
                 'dateUpdated' => $this->dateTime()->notNull(),

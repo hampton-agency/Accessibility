@@ -13,7 +13,28 @@
  */
 #}
 
+{% set issues = craft.accessibility.getAccessibilityIssues() %}
+
+{% set totalErrors = 0 %}
+{% set totalWarnings = 0 %}
+{% set totalGood = 0 %}
+
 {% set iconUrl = view.getAssetManager().getPublishedUrl('@hampton/accessibility/assetbundles/accessibilitywidgetwidget/dist', true) ~ '/img/AccessibilityWidget-icon.svg' %}
 
-<img src="{{ iconUrl }}" height="64" width="64" />
+{% for issue in issues %}
+    {% set issueDetails = issue.issue|json_decode %}
 
+    {% for pageIssue in issueDetails %}
+        {% if pageIssue.Severity == 3 %}
+            {% set totalErrors = totalErrors + 1 %}
+        {% elseif pageIssue.Severity == 2 %}
+            {% set totalWarnings = totalWarnings + 1 %}
+        {% elseif pageIssue.Severity == 1 %}
+            {% set totalGood = totalGood + 1 %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+<p>Errors: {{ totalErrors }}</p>
+<p>Warnings: {{ totalWarnings }}</p>
+<p>Good: {{ totalGood }}</p>

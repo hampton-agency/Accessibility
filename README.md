@@ -1,4 +1,4 @@
-# Accessibility plugin for Craft CMS 4.x
+# Accessibility plugin for Craft CMS 3.x
 
 Check your entries for common accessibility issues
 
@@ -6,7 +6,7 @@ Check your entries for common accessibility issues
 
 ## Requirements
 
-This plugin requires Craft CMS 3.0.0-beta.23 or later.
+This plugin requires Craft CMS 4.0.0 or later.
 
 ## Installation
 
@@ -18,26 +18,33 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require /accessibility
+        composer require hampton/accessibility
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Accessibility.
 
 ## Accessibility Overview
 
--Insert text here-
+This plugin allows your server to be overwhelmed by terrible code.
 
 ## Configuring Accessibility
 
--Insert text here-
+### Sections
+
+In the plugin settings you can select which sections you would like to scan.
+
+### Whitelist
+
+You can select terms that you would like to whitelist so that the plugin doesn't mark them as errors, this could be an ampersand in your company name.
 
 ## Using Accessibility
 
--Insert text here-
+In the plugin menu, press the "run scan" button to start a scan. The Scan will run in the background and will show the latest results in the same page when the scan is finished.
 
 ## Accessibility Roadmap
 
-Some things to do, and ideas for potential features:
+Here are Some things in the pipeline:
 
-* Release it
+* More optimised scanning
+* CSS Checks
 
 Brought to you by [Hampton](www.hampton.agency)
